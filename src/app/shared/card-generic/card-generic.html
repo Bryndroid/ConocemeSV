@@ -1,0 +1,68 @@
+<div
+  class="relative w-[400px] bg-white border border-gray-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-300"
+  [class.ring-1]="isExpanded" [class.ring-indigo-500]="isExpanded">
+
+  <!-- Fila Principal (Click para expandir) -->
+  <div class="flex items-start justify-between cursor-pointer select-none" (click)="isExpanded = !isExpanded">
+    <div class="flex items-center gap-3">
+      <!-- Icono contenedor -->
+      <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600  ">
+        <i class="ri-contrast-drop-2-line text-2xl"></i>
+      </div>
+
+      <!-- Título y Badges -->
+      <div class="flex flex-col">
+        <div class="flex items-center gap-2">
+          <h3 class="text-base font-bold text-gray-900  m-0 leading-none">
+            {{ UserRoute?.title || 'La Mojada' }}
+          </h3>
+          <!-- Badge de Categoría -->
+          <span class="px-2 py-0.5 text-[10px] font-medium rounded-full bg-purple-100 text-purple-700 ">
+            {{ categoryLabel }}
+          </span>
+        </div>
+
+        <!-- Estado de progreso (Subtítulo) -->
+        <span class="text-sm font-semibold text-orange-600  mt-1.5">
+          {{ UserRoute ? (UserRoute.percentage * 100 | number:'1.0-0') : 0 }}% completada
+        </span>
+      </div>
+    </div>
+
+    <!-- Indicador de despliegue -->
+    <button mat-icon-button class="text-gray-400  hover:text-indigo-500 transition-colors">
+      <i class="ri-arrow-down-s-line text-xl transition-transform duration-300 block"
+        [class.rotate-180]="isExpanded"></i>
+    </button>
+  </div>
+
+  <!-- Chips de Información rápida (Siempre visibles) -->
+  <div class="flex flex-wrap gap-2 mt-3 ml-[60px]">
+    <span class="px-3 py-1 text-xs font-medium rounded-full bg-yellow-50 text-yellow-700 border border-yellow-100 ">
+      <i class="ri-car-line mr-1"></i> {{ UserRoute?.totalTimeCar || 0 }} min
+    </span>
+    <span class="px-3 py-1 text-xs font-medium rounded-full bg-yellow-50 text-yellow-700 border border-yellow-100 ">
+      <i class="ri-route-line mr-1"></i> {{ UserRoute?.totalDistance || 0 }} Km
+    </span>
+  </div>
+
+  <!-- Contenido Expandido (Más Información) -->
+  @if(isExpanded){
+  <div class="mt-4 pt-4 border-t border-gray-100  ml-[60px]">
+    <p class="text-sm text-gray-600  mb-3 leading-relaxed">
+      {{ UserRoute?.description || 'Ruta de balnearios y de playa' }}
+    </p>
+    <p class="text-xs text-gray-500 mb-3">Creada por {{ UserRoute.autor }}</p>
+
+    <!-- Caja de próximo lugar (Solo un lugar por mostrar ya que se me corrompe todo el layout) -->
+    <div class="bg-gray-50 rounded-lg p-3 border border-gray-100 ">
+      <p class="text-[10px] text-gray-500 uppercase font-bold mb-1 tracking-wider">Próximo destino</p>
+      <div class="text-sm font-medium text-indigo-600  flex items-center gap-2">
+        <i class="ri-map-pin-line"></i>
+        <span>{{ nextPlaceName || 'Ruta completada' }}</span>
+      </div>
+    </div>
+  </div>
+  }
+
+</div>

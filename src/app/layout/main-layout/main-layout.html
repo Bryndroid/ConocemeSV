@@ -1,0 +1,51 @@
+<!--Grid Layout. Son las lineas que se visualizan de fondo-->
+<div class="fixed inset-0 pointer-events-none opacity-[0.20] z-[-1]" style="
+    background-size: 48px 48px;
+
+    background-image:
+      linear-gradient(to right, #22c55e 1px, transparent 1px),
+      linear-gradient(to bottom, #22c55e 1px, transparent 1px);
+
+  " aria-hidden="true"></div>
+<!-- Header que se mueve al scroll para navegar dentro de las propias paginas (que esto al ser un MVP las paginas son referencias directas a ID de componentes del DOM)-->
+<div class='sticky top-0 w-full z-[999999] opacity-[50%] hover:opacity-100 transition-all'>
+  <header class='w-full xl:w-[60%] m-auto mb-10 shadow-2xl rounded-2xl'>
+    <mat-toolbar class='rounded-2xl gap-2'>
+      <!--Navegacion unicamente a referencias de ID del DOM-->
+      <a mat-button class="text-[10px]">
+        <h1 class=' '>Conoceme<b class='text-green-500'>SV</b></h1>
+      </a>
+      <div class=" hidden sm:flex-1 sm:block flex-auto text-lg"></div>
+      <a mat-button (click)="scrollTo('rutas')">
+        <i class="ri-route-line text-lg" aria-hidden="true"></i> Mis Rutas
+      </a>
+
+      <a mat-button (click)="scrollTo('catalogo')">
+        <i class="ri-layout-grid-line text-lg"></i> Catálogo
+      </a>
+
+      <a mat-button (click)="scrollTo('crear')">
+        <i class="ri-map-pin-add-line text-lg"></i> Crear
+      </a>
+      <div class="hidden sm:flex-1 sm:block flex-auto"></div>
+      <a mat-button (click)="logout()">
+        <section class='flex justify-between  items-center gap-2 cursor-pointer'>
+          <div matBadge="1" matBadgeSize="small">
+            <i class="ri-user-3-line text-[28px]"></i>
+          </div>
+          <div class='text-xl font-semibold'>
+            {{currentUser.firstName}}
+          </div>
+
+        </section>
+      </a>
+    </mat-toolbar>
+  </header>
+</div>
+<!--Render de la pagina children.-->
+<main class='bg-white w-full xl:w-[70%] m-auto rounded-xl p-4 shadow-2xl'>
+  <router-outlet></router-outlet>
+</main>
+<footer>
+
+</footer>

@@ -1,0 +1,15 @@
+<!--Modal para avisar al user que se le acaba el token y renovar o revocar.-->
+
+<h2 mat-dialog-title>Tu sesión está por expirar</h2>
+
+<mat-dialog-content>
+  <p>Por seguridad, tu sesión finalizará pronto. ¿Quieres continuar conectado?</p>
+  <p class="countdown" aria-live="polite">{{ countdown() }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="logout()">Cerrar sesión</button>
+  <button mat-flat-button color="primary" type="button" (click)="refreshSession()">
+    Continuar sesión
+  </button>
+</mat-dialog-actions>

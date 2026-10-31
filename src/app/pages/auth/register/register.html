@@ -1,0 +1,73 @@
+<div class="auth-form">
+  <div class="form-kicker"><span></span> EMPIEZA A EXPLORAR</div>
+  <h2>Crea tu cuenta</h2>
+  <p class="form-intro">Únete a la comunidad y descubre un nuevo lugar favorito.</p>
+  <!--Linkeando este form al ReactiveFormModule de Angular.-->
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-fields">
+      <mat-form-field appearance="outline" class="auth-field">
+        <mat-label>Nombre</mat-label>
+        <i matPrefix class="ri-user-3-line field-icon" aria-hidden="true"></i>
+        <input matInput type="text" placeholder="¿Cómo te llamas?" autocomplete="name" formControlName="firstName" />
+        @if (registerForm.controls.firstName.hasError('pattern')) {
+        <mat-error>El nombre no debe contener números ni caracteres especiales.</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="auth-field">
+        <mat-label>Apellido</mat-label>
+        <i matPrefix class="ri-user-3-line field-icon" aria-hidden="true"></i>
+        <input matInput type="text" placeholder="Tu mejor apellido escribelo acá" autocomplete="name"
+          formControlName="lastName" />
+        @if (registerForm.controls.lastName.hasError('pattern')) {
+        <mat-error>El apellido no debe contener números ni caracteres especiales.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="auth-field">
+        <mat-label>Correo electrónico</mat-label>
+        <i matPrefix class="ri-mail-line field-icon" aria-hidden="true"></i>
+        <input matInput type="email" placeholder="tu@correo.com" autocomplete="email" formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="auth-field">
+        <mat-label>Contraseña</mat-label>
+        <i matPrefix class="ri-lock-2-line field-icon" aria-hidden="true"></i>
+        <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Crea una contraseña" autocomplete="new-password"
+          formControlName="password" />
+        <button matSuffix type="button" class="password-toggle"
+          (click)="showPassword = !showPassword"
+          [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+          [attr.aria-pressed]="showPassword">
+          <i [class]="showPassword ? 'ri-eye-off-line field-suffix' : 'ri-eye-line field-suffix'" aria-hidden="true"></i>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="auth-field">
+        <mat-label>Confirmar contraseña</mat-label>
+        <i matPrefix class="ri-shield-keyhole-line field-icon" aria-hidden="true"></i>
+        <input matInput type="password" placeholder="Repite tu contraseña" autocomplete="new-password"
+          formControlName="confirmPassword" />
+      </mat-form-field>
+    </div>
+
+    <label class="check-option terms-option">
+      <input type="checkbox" formControlName="termsConditions" />
+      <span class="custom-check" aria-hidden="true"></span>
+      <span>Acepto los <span class="text-link">términos y condiciones</span></span>
+    </label>
+
+    @if (registerError()) {
+    <p class="form-intro" role="alert">{{ registerError() }}</p>
+    }
+
+    <button class="auth-button" type="submit">
+      Crear mi cuenta <i class="ri-arrow-right-line" aria-hidden="true"></i>
+    </button>
+  </form>
+
+  <p class="form-switch">
+    ¿Ya tienes una cuenta?
+    <a routerLink="/auth/login">Inicia sesión</a>
+  </p>
+</div>

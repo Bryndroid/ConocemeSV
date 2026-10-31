@@ -1,0 +1,46 @@
+<!--Layout para render de Login y Register pages.-->
+<main class="auth-page">
+  <div class="auth-page__grid" aria-hidden="true"></div>
+  <div class="auth-shell">
+    <!--Decoracion lateral-->
+    <aside class="auth-showcase">
+      <a class="brand" routerLink="/" aria-label="ConocemeSV, inicio">
+        <span class="brand__mark"><i class="ri-compass-3-line" aria-hidden="true"></i></span>
+        <span>Conoceme<span class="brand__accent">SV</span></span>
+      </a>
+
+      <div class="showcase-copy">
+        <span class="eyebrow"><span class="eyebrow__dot"></span> DESCUBRE EL SALVADOR</span>
+        <h1>Tu próxima historia comienza <span>aquí.</span></h1>
+        <p>Encuentra rincones únicos, crea rutas inolvidables y comparte lo mejor de nuestro país.</p>
+
+        <div class="showcase-note">
+          <span class="showcase-note__icon"><i class="ri-map-2-line" aria-hidden="true"></i></span>
+          <span>
+            <strong>Hay mucho por descubrir</strong>
+            <small>Explora cada destino a tu manera</small>
+          </span>
+          <i class="ri-arrow-right-up-line showcase-note__arrow" aria-hidden="true"></i>
+        </div>
+      </div>
+
+      <div class="showcase-art" aria-hidden="true">
+        <span class="showcase-art__ring showcase-art__ring--outer"></span>
+        <span class="showcase-art__ring showcase-art__ring--inner"></span>
+        <span class="showcase-art__pin"><i class="ri-map-pin-2-fill"></i></span>
+        <span class="showcase-art__spark showcase-art__spark--one"><i class="ri-sparkling-2-fill"></i></span>
+        <span class="showcase-art__spark showcase-art__spark--two"><i class="ri-shining-2-fill"></i></span>
+        <span class="showcase-art__route"></span>
+      </div>
+
+      <div class="showcase-footer">
+        <span><i class="ri-leaf-line" aria-hidden="true"></i> Hecho para explorar</span>
+        <span>El Salvador, a tu alcance</span>
+      </div>
+    </aside>
+    <!--Contenedor de pagina children. De normal, aqui se renderizara el login o register pages.-->
+    <section class="auth-content" aria-label="Acceso a tu cuenta">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+</main>
